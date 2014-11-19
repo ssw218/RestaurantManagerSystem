@@ -10,7 +10,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		DeliveryDaoImpl deliveryDaoImpl = new DeliveryDaoImpl();
+		DeliveryDaoImpl deliveryDaoImpl = DeliveryDaoImpl.getDaoImpl();
 		DeliveryBean deliveryBean = new DeliveryBean();
 		deliveryBean.setOrderMenu("none");
 		deliveryBean.setAddress("天津师范大学西青区");
@@ -18,7 +18,7 @@ public class Test {
 		deliveryBean.setOrderTime(new Timestamp(System.currentTimeMillis() - 100000));
 		deliveryBean.setArriveTIme(new Timestamp(System.currentTimeMillis()));
 		deliveryDaoImpl.add(deliveryBean);
-		DatabaseDao.closeDatabase();
+		DeliveryDaoImpl.closeDatabase();
 	}
 
 }

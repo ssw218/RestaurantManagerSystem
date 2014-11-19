@@ -7,7 +7,9 @@ import java.sql.Statement;
 
 import com.rmsystem.util.DatabaseHelpers;
 
-public abstract class DatabaseDao {
+public class DatabaseDao {
+	
+	private static DatabaseDao mDatabaseDao;
 	
 	private static Connection mConnection;
 	
@@ -24,12 +26,23 @@ public abstract class DatabaseDao {
 		} 
 	}
 	
-	public DatabaseDao() {
+	protected DatabaseDao() {
 		openDatabase();
 	}
 	
 	public Connection getConnection() {
 		return mConnection;
+	}
+	
+	public Statement getStatement() {
+		return mStatement;
+	}
+	
+	public static DatabaseDao getDaoImpl(){
+		if(mDatabaseDao == null) {
+			mDatabaseDao = new DatabaseDao();
+		}
+		return mDatabaseDao;
 	}
 	
 	public static void openDatabase() {
